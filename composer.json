@@ -1,5 +1,5 @@
 {
-    "name": "piccaso/ff_pdo",
+    "name": "piccaso/ffpdo",
     "description": "quick db prototyping",
     "require": {
         "php": ">=5.3.0"
