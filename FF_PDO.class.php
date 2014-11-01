@@ -1,9 +1,13 @@
 <?php
 
+if(!class_exists("FF_PDO_BASE", false)){
+    class FF_PDO_BASE extends PDO {};
+}
+
 /**
  * Class FF_PDO
  */
-class FF_PDO extends PDO {
+class FF_PDO extends FF_PDO_BASE {
     /**
      * For compatibility with SQLITE3
      * @param $sql
@@ -20,6 +24,11 @@ class FF_PDO extends PDO {
         return $r;
     }
 
+    /**
+     * @param $cnt
+     * @param $all_args
+     * @return array
+     */
     private function build_args($cnt,$all_args){
         if(is_array($all_args)) {
             if($cnt == 2 && is_array($all_args[1])){
@@ -33,10 +42,19 @@ class FF_PDO extends PDO {
         return array();
     }
 
+    /**
+     * @param $column_name
+     * @return int
+     */
     private function is_valid_column_name($column_name){
         return preg_match('/^[a-zA-Z_][a-zA-Z0-9_]*$/',$column_name);
     }
 
+    /**
+     * @param $sql
+     * @param null $args
+     * @return mixed
+     */
     public function q($sql,$args=null){
         $args = $this->build_args(func_num_args(),func_get_args());
         $ps = $this->prepare($sql);
@@ -50,6 +68,11 @@ class FF_PDO extends PDO {
         }
     }
 
+    /**
+     * @param $sql
+     * @param null $args
+     * @return array
+     */
     public function qt($sql,$args=null){
         $args = $this->build_args(func_num_args(),func_get_args());
         $ps = $this->prepare($sql);
@@ -60,6 +83,11 @@ class FF_PDO extends PDO {
         }
     }
 
+    /**
+     * @param $sql
+     * @param null $args
+     * @return array
+     */
     public function qv($sql,$args=null){
         $args = $this->build_args(func_num_args(),func_get_args());
         $ps = $this->prepare($sql);
