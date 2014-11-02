@@ -7,5 +7,8 @@
     },
     "autoload": {
         "classmap": ["FF_PDO.class.php"]
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.3.*"
     }
 }

@@ -1,13 +1,9 @@
 <?php
 
-if(!class_exists("FF_PDO_BASE", false)){
-    class FF_PDO_BASE extends PDO {};
-}
-
 /**
  * Class FF_PDO
  */
-class FF_PDO extends FF_PDO_BASE {
+class FF_PDO extends PDO {
     /**
      * For compatibility with SQLITE3
      * @param $sql
@@ -48,6 +44,10 @@ class FF_PDO extends FF_PDO_BASE {
      */
     private function is_valid_column_name($column_name){
         return preg_match('/^[a-zA-Z_][a-zA-Z0-9_]*$/',$column_name);
+    }
+
+    public function replace($table,$data){
+        if(!$this->is_valid_column_name($table)) return false;
     }
 
     /**
