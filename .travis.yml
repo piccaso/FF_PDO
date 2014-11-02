@@ -1,0 +1,17 @@
+language: php
+
+before_script:
+  - composer self-update
+  - composer install --no-interaction --prefer-source --dev
+
+php:
+  - 5.3
+  - 5.4
+  - 5.5
+  - 5.6
+  - hhvm
+
+script: vendor/bin/phpunit FF_PDO_TESTS FF_PDO_TESTS.class.php
+
+notifications:
+  email: false
