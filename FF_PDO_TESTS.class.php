@@ -47,6 +47,15 @@ class FF_PDO_TESTS extends PHPUnit_Framework_TestCase {
             $this->assertTrue(md5($row['bin']) === $row['binmd5']);
         }
 
+        $this->assertEquals(32966,strlen(implode(',',$db->qv("SELECT b FROM test"))));
+        $this->assertTrue($db->exec("DELETE FROM test") >= 1);
+        $this->assertTrue($db->replace('test',array('a'=>1,'b'=>'b')));
+        $this->assertTrue($db->replace('test',array('a'=>1,'c'=>'c')));
+        $this->assertEquals(1,$db->q("SELECT count(*) FROM test WHERE a='1'"));
+        $a1 = $db->q("SELECT * FROM test WHERE a=?",1);
+        $a1['c']='c';
+        $this->assertTrue($db->replace('test',$a1));
+        $this->assertEquals(1,$db->q("SELECT a FROM test WHERE c='c'"));
     }
 
 } 

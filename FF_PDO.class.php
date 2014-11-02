@@ -40,14 +40,31 @@ class FF_PDO extends PDO {
 
     /**
      * @param $column_name
-     * @return int
+     * @return mixed
      */
     private function is_valid_column_name($column_name){
         return preg_match('/^[a-zA-Z_][a-zA-Z0-9_]*$/',$column_name);
     }
 
-    public function replace($table,$data){
+    private function into($what,$table,$data){
         if(!$this->is_valid_column_name($table)) return false;
+        $columns = array();
+        $keys_colon = array();
+        $data_colon = array();
+        foreach($data as $key=>$value){
+            if(!$this->is_valid_column_name($key)) return false;
+            $columns[]=$key;
+            $key = ':'.$key;
+            $keys_colon[]=$key;
+            $data_colon[$key]=$value;
+        }
+        $sql = "$what $table (".implode(', ',$columns).") VALUES (".implode(', ',$keys_colon).")";
+        $ps = $this->prepare($sql);
+        return $ps->execute($data_colon);
+    }
+
+    public function replace($table,$data){
+        return $this->into('REPLACE INTO',$table,$data);
     }
 
     /**
