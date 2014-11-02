@@ -2,7 +2,8 @@ language: php
 
 before_script:
   - composer self-update
-  - composer install --no-interaction --prefer-source --dev
+  - composer --version
+  - composer install --no-interaction --prefer-dist --dev
 
 php:
   - 5.3
@@ -10,6 +11,11 @@ php:
   - 5.5
   - 5.6
   - hhvm
+  - hhvm-nightly
+
+matrix:
+  allow_failures:
+    - php: hhvm-nightly
 
 script: vendor/bin/phpunit FF_PDO_TESTS FF_PDO_TESTS.class.php
 
