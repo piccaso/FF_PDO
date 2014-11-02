@@ -1,10 +1,5 @@
 language: php
 
-before_script:
-  - composer self-update
-  - composer --version
-  - composer install --no-interaction --prefer-dist --dev
-
 php:
   - 5.3
   - 5.4
@@ -17,7 +12,7 @@ matrix:
   allow_failures:
     - php: hhvm-nightly
 
-script: vendor/bin/phpunit FF_PDO_TESTS FF_PDO_TESTS.class.php
+script: phpunit FF_PDO_TESTS FF_PDO_TESTS.class.php
 
 notifications:
   email: false

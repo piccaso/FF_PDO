@@ -2,13 +2,12 @@
     "name": "piccaso/ffpdo",
     "description": "quick db prototyping",
     "license": "GPL-3.0+",
+    "require-dev": {"phpunit/phpunit": "4.3.*"},
     "require": {
         "php": ">=5.3.0"
     },
     "autoload": {
         "classmap": ["FF_PDO.class.php"]
-    },
-    "require-dev": {
-        "phpunit/phpunit": "4.3.*"
     }
+
 }
