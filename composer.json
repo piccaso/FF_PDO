@@ -6,6 +6,11 @@
     "require": {
         "php": ">=5.3.0"
     },
+    "suggest": {
+        "ext-pdo": "Allows use of SQL databases",
+        "ext-pdo_mysql": "Allows use of MySQL databases",
+        "ext-pdo_sqlite": "Allows use of SQLite databases"
+    },
     "autoload": {
         "classmap": ["FF_PDO.class.php"]
     }
