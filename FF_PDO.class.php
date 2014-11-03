@@ -77,7 +77,7 @@ class FF_PDO extends PDO {
         $ps = $this->prepare($sql);
         if($ps->execute($args)){
             $r = $ps->fetch();
-            if($ps->columnCount() === 1){
+            if($ps->columnCount() === 1 && is_array($r)){
                 $r=current($r);
             }
             $ps->closeCursor();
