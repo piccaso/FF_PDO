@@ -12,6 +12,9 @@ matrix:
   allow_failures:
     - php: hhvm-nightly
 
+before_script:
+  - mysql -u travis -e 'CREATE DATABASE IF NOT EXISTS travis;'
+
 script: phpunit FF_PDO_TESTS FF_PDO_TESTS.class.php
 
 notifications:
