@@ -14,6 +14,9 @@ matrix:
 
 before_script:
   - mysql -u travis -e 'CREATE DATABASE IF NOT EXISTS travis;'
+  - lsb_release -a
+  - uname -a
+  - env
 
 script: phpunit FF_PDO_TESTS FF_PDO_TESTS.class.php
 
