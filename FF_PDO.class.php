@@ -73,7 +73,9 @@ class FF_PDO extends PDO {
      * @return mixed
      */
     public function q($sql,$args=null){
-        $args = $this->build_args(func_num_args(),func_get_args());
+        $_func_num_args = func_num_args();
+        $_func_get_args = func_get_args();
+        $args = $this->build_args($_func_num_args,$_func_get_args);
         $ps = $this->prepare($sql);
         if($ps->execute($args)){
             $r = $ps->fetch();
@@ -91,7 +93,9 @@ class FF_PDO extends PDO {
      * @return array
      */
     public function qt($sql,$args=null){
-        $args = $this->build_args(func_num_args(),func_get_args());
+        $_func_num_args = func_num_args();
+        $_func_get_args = func_get_args();
+        $args = $this->build_args($_func_num_args,$_func_get_args);
         $ps = $this->prepare($sql);
         if($ps->execute($args)){
             $r = $ps->fetchAll();
@@ -106,7 +110,9 @@ class FF_PDO extends PDO {
      * @return array
      */
     public function qv($sql,$args=null){
-        $args = $this->build_args(func_num_args(),func_get_args());
+        $_func_num_args = func_num_args();
+        $_func_get_args = func_get_args();
+        $args = $this->build_args($_func_num_args,$_func_get_args);
         $ps = $this->prepare($sql);
         if($ps->execute($args)){
             $r = array();
