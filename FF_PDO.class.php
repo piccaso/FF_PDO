@@ -66,6 +66,9 @@ class FF_PDO extends PDO {
     public function replace($table,$data){
         return $this->into('REPLACE INTO',$table,$data);
     }
+    public function insert($table,$data){
+        return $this->into('INSERT INTO',$table,$data);
+    }
 
     /**
      * @param $sql
